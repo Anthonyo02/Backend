@@ -1,0 +1,62 @@
+POST /api/auth/register HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+Accept: application/json
+
+{
+    "image": null,
+    "first_name": "Tantely3",
+    "phone_number": "123456789",
+    "last_name": "Tantely",
+    "username": "Tantely",
+    "email": "hei.tantely.2221123@gmail.com",
+    "address": "123 Main Street",
+    "city": "City ville",
+    "password": "2022tantely2022",
+    "password_confirmation": "2022tantely2022"
+}
+
+
+###
+POST /api/auth/login
+Host: localhost:8000
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "hei.tantely2@gmail.com",
+    "password": "2022tantely2022"
+}
+
+
+###
+POST /api/logout
+Host: localhost:8000
+Content-Type: application/json
+Accept: application/json
+Authorization:  Bearer  token
+
+###
+POST /api/refresh
+Host: localhost:8000
+Content-Type: application/json
+Accept: application/json
+Authorization:  Bearer  token
+
+###
+POST /api/category/crup/8 HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+Accept: application/json
+
+{
+"name": "Mini PC"
+}
+
+###
+
+DELETE /api/article/delete/5 HTTP/1.1
+Host: localhost:8000
+Content-Type: application/json
+Accept: application/json
+
