@@ -61,15 +61,19 @@
 
         public function extractData(CreateUserRequest $request, ?User $user = null): array
         {
-            $data = $request->validated();
-            $image = $data['image'] ?? null;
+            $imagePath = 'chemin/vers/votre/image/' . $imageName;
 
-            if ($image instanceof UploadedFile && !$image->getError()) {
-                if ($user->image !== null) {
-                    Storage::disk("public")->delete($user->image);
-                }
-                $data["image"] = $image->store("profiles", "public");
-            }
+    // Vérifier si l'image existe
+    if (Storage::exists($imagePath)) {
+        // Renvoyer l'image avec le bon type de contenu
+        $fileContents = Storage::get($imagePath);
+        $response = response()->make($fileContents, 200);
+        $response->header('Content-Type', Storage::mimeType($imagePath));
+        return $response;
+    } else {
+        // Gérer le cas où l'image n'existe pas
+        return response()->json(['message' => 'Image not found'], 404);
+    }
 
             return $data;
         }
